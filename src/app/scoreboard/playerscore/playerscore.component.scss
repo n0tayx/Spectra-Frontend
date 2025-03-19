@@ -1,11 +1,135 @@
+// 🎨 Variáveis de cores
+$attacker-color: #ff4655;
+$defender-color: #0097ff;
+$background-dark: rgba(15, 15, 15, 0.9);
+$text-light: #ffffff;
+$text-muted: #bbbbbb;
+
+// 🔹 Container principal do scoreboard
+.scoreboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: $background-dark;
+  border-radius: 12px;
+  padding: 20px;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.02);
+  }
+}
+
+// 🔹 Header dos times
+.scoreboard-header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding-bottom: 10px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+// 🔹 Estilização dos times
+.team-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+// 🔹 Ícones dos times
+.team-icon-container {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0px 2px 8px rgba(255, 255, 255, 0.2);
+}
+
+.team-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// 🔹 Nome dos times
+.teamname-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: $text-light;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+// 🔹 Estilização dos créditos gastos por round
+.money-spent-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $text-muted;
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+.money-spent-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: bold;
+  color: $text-light;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background 0.3s;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
+// 🔹 Ícone dos créditos
+.credits-icon {
+  width: 16px;
+}
+
+// 🔹 Seção principal do placar
+.scoreboard-content-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 15px;
+}
+
+// 🔹 Estilização dos jogadores
+.playerscore-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+// 🔹 Estilização dos lados (ataque/defesa)
+.attacker {
+  border-left: 4px solid $attacker-color;
+  padding-left: 8px;
+}
+
+.defender {
+  border-left: 4px solid $defender-color;
+  padding-left: 8px;
+}
+
+// 🔹 Flip para inverter o layout do time adversário
 .flip {
+  flex-direction: row-reverse;
   transform: rotateY(180deg);
 }
 
-.right {
-  @extend .flip;
-}
-
+// 🔹 Estilização dos cards dos jogadores
 .playerscore-component {
   display: flex;
   height: 74px;
@@ -14,324 +138,83 @@
   justify-content: space-between;
   position: relative;
   flex: 0 0 auto;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
 
   &.defender {
     background: linear-gradient(
       90deg,
-      rgba(var(--defender-color-rgb), 0) 3.74%,
-      rgba(var(--defender-color-rgb), 0.65) 5.57%,
-      rgba(var(--defender-color-rgb), 0.3) 22.42%,
-      rgba(var(--defender-color-rgb), 0) 37.11%
+      rgba($defender-color, 0) 3%,
+      rgba($defender-color, 0.65) 6%,
+      rgba($defender-color, 0.3) 22%,
+      rgba($defender-color, 0) 37%
     );
   }
 
   &.attacker {
     background: linear-gradient(
       90deg,
-      rgba(var(--attacker-color-rgb), 0) 4.69%,
-      rgba(var(--attacker-color-rgb), 0.65) 6.5%,
-      rgba(var(--attacker-color-rgb), 0.3) 23.1%,
-      rgba(var(--attacker-color-rgb), 0) 37.57%
+      rgba($attacker-color, 0) 3%,
+      rgba($attacker-color, 0.65) 6%,
+      rgba($attacker-color, 0.3) 22%,
+      rgba($attacker-color, 0) 37%
     );
   }
 
-  &.minimal {
-    @extend .playerscore-component;
-    width: auto;
-
-    &.defender {
-      background: linear-gradient(
-        90deg,
-        rgba(var(--defender-color-rgb), 0) 3.74%,
-        rgba(var(--defender-color-rgb), 0.65) 5.57%,
-        rgba(var(--defender-color-rgb), 0.3) 42.42%,
-        rgba(var(--defender-color-rgb), 0) 67.11%
-      );
-    }
-
-    &.attacker {
-      background: linear-gradient(
-        90deg,
-        rgba(var(--attacker-color-rgb), 0) 4.69%,
-        rgba(var(--attacker-color-rgb), 0.65) 6.5%,
-        rgba(var(--attacker-color-rgb), 0.3) 53.1%,
-        rgba(var(--attacker-color-rgb), 0) 74.57%
-      );
-    }
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
   }
 }
 
-.playerinfo-container {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  position: relative;
-  align-self: stretch;
-  flex: 0 0 auto;
-}
-
-.agent-icon {
-  background-size: cover;
-  background-position: 50% 50%;
-  position: relative;
-  width: 74px;
-  height: 74px;
-}
-
-.playername-container {
-  display: flex;
-  flex-direction: column;
-  width: 121px;
-  align-items: center;
-  justify-content: center;
-  gap: 3px;
-  position: relative;
-  align-self: stretch;
-}
-
+// 🔹 Nome dos jogadores
 .playername-text {
-  position: relative;
-  width: fit-content;
   font-family: "Montserrat", Helvetica;
   font-weight: 600;
-  color: #ffffff;
+  color: white;
   font-size: 16px;
   text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
   white-space: nowrap;
 
   &.minimal {
-    @extend .playername-text;
     font-size: 18px;
   }
 }
 
-.agentname-text {
-  font-family: "Montserrat", Helvetica;
-  font-weight: 700;
-  font-size: 11px;
-  text-align: center;
-
-  &.attacker {
-    @extend .agentname-text;
-    color: var(--attacker-color-shield-currency);
-  }
-
-  &.defender {
-    @extend .agentname-text;
-    color: var(--defender-color-shield-currency);
-  }
-}
-
+// 🔹 Ultimate Tracker (orbs de habilidade)
 .ultimate-tracker {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 1.25px;
-  position: relative;
-  flex: 0 0 auto;
+  gap: 2px;
 }
 
 .pip-ultimate {
-  position: relative;
-  background-image: url(/assets/misc/ultimate-pip.svg);
-  background-size: 100% 100%;
+  background-image: url("/assets/misc/ultimate-pip.svg");
   width: 10px;
   height: 10px;
 
   &-full {
-    @extend .pip-ultimate;
-    background-image: url(/assets/misc/ultimate-pip-full.svg);
+    background-image: url("/assets/misc/ultimate-pip-full.svg");
   }
 }
 
-.ultimate-full-image {
-  width: 25px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.resources-container {
-  display: flex;
-  width: 530px;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  position: relative;
-  align-self: stretch;
-  margin-left: -85.6px;
-  left: 7px;
-
-  &.minimal {
-    @extend .resources-container;
-    width: 360px;
-  }
-}
-
-.rank-icon-container {
-  position: absolute;
-  width: 30px;
-  height: 30px;
-  left: -5px;
-  top: 44px;
-  background-size: cover;
-  background-position: 50% 50%;
-}
-
-.rank-icon {
-  height: 100%;
-  aspect-ratio: 1;
-}
-
-.shield-icon-container {
-  width: 36px;
-  height: 36px;
-}
-
-.shield-icon {
-  height: 100%;
-  aspect-ratio: 1;
-}
-
-.KDA-tracker-wrapper {
-  display: flex;
-  width: 120px;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  align-self: stretch;
-
-  &.minimal {
-    @extend .KDA-tracker-wrapper;
-    width: 170px;
-  }
-}
-
-.KDA-tracker {
-  position: relative;
-  width: fit-content;
-  font-family: "Unbounded", Helvetica;
-  font-weight: 600;
-  color: transparent;
-  font-size: 16px;
-  text-align: center;
-  letter-spacing: 0;
-  line-height: normal;
-  white-space: nowrap;
-
-  &.minimal {
-    @extend .KDA-tracker;
-    display: flex;
-    flex-direction: row;
-    gap: 14px;
-  }
-}
-
-.KDA-tracker-bundle {
-  display: flex;
-  flex-direction: column;
-}
-
-.KDA-title {
-  @extend .agentname-text;
-  color: white;
-}
-
-.KDA-text {
-  color: #ffffff;
-  font-family: "Unbounded", Helvetica;
-  font-weight: 600;
-  font-size: 16px;
-  letter-spacing: 0;
-
-  &-delimiter {
-    @extend .KDA-text;
-    color: #ffffff80;
-  }
-}
-
-.weapon-icon-container {
-  display: flex;
-  min-width: 160px;
-  max-width: 200px;
-  flex-shrink: 1;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  position: relative;
-  align-self: stretch;
-}
-
-.weapon-icon-wrapper {
-  align-items: flex-start;
-  justify-content: center;
-  display: inline-flex;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 190px;
-  position: relative;
-  flex: 0 0 auto;
-}
-
+// 🔹 Ícones de armas e dinheiro
 .weapon-icon {
-  position: relative;
   max-height: 40px;
   max-width: 160px;
   object-fit: cover;
 }
 
-.money-container {
-  display: flex;
-  flex-direction: column;
-  min-width: 80px;
-  max-width: 100px;
-  flex: auto;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  position: relative;
-  align-self: stretch;
-}
-
-.money-element {
-  position: relative;
-  width: fit-content;
-  opacity: 0.8;
-  font-family: "Montserrat", Helvetica;
-  font-weight: 700;
-  font-size: 18px;
-  text-align: center;
-  line-height: normal;
-  white-space: nowrap;
-  margin: -5px;
-}
-
-.credits-icon {
-  position: relative;
-  width: 12px;
-  height: 12px;
-}
-
 .money-text {
-  letter-spacing: 0;
-  opacity: 0.8;
-  font-family: "Montserrat", Helvetica;
   font-weight: 700;
   font-size: 18px;
+  opacity: 0.8;
 
   &-red {
-    @extend .money-text;
     color: #ff4557;
   }
 
   &-white {
-    @extend .money-text;
     color: white;
   }
-}
-
-app-abilities {
-  min-width: 90px;
-  margin: 0 5px;
 }
